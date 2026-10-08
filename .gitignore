@@ -1,0 +1,47 @@
+# Visual Studio and .NET build output
+.vs/
+**/bin/
+**/obj/
+**/packages/
+*.dll
+*.pdb
+*.user
+*.suo
+*.nupkg
+
+# Modern UI build output
+**/node_modules/
+**/dist/
+*.tsbuildinfo
+*.cache
+*.log
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+web.config
+Web.config
+appsettings.*.local.json
+secrets/
+*.pfx
+*.pem
+*.key
+*.p12
+
+# Reference material and local deployment/database files
+reference/
+tmp/
+*.pdf
+*.zip
+*.7z
+*.bak
+*.bacpac
+*.dacpac
+*.mdf
+*.ldf
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
