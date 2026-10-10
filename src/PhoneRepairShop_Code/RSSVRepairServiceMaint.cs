@@ -1,0 +1,40 @@
+using System;
+using PhoneRepairShop_Code.DAC;
+using PX.Data;
+using PX.Data.BQL.Fluent;
+
+namespace PhoneRepairShop
+{
+	public class RSSVRepairServiceMaint : PXGraph<RSSVRepairServiceMaint>
+	{
+        public SelectFrom<RSSVRepairService>.View RepairService = null!;
+      
+	    public PXSave<RSSVRepairService> Save = null!;
+        public PXCancel<RSSVRepairService> Cancel = null!;
+
+        protected void _(Events.FieldUpdated<RSSVRepairService, 
+         RSSVRepairService.walkInService> e)
+        { 
+           var row = e.Row;
+           row.PreliminaryCheck = !(row.WalkInService == true);
+        }
+
+
+		public PXFilter<MasterTable> MasterView;
+		public PXFilter<DetailsTable> DetailsView;
+
+		[Serializable]
+		public class MasterTable : PXBqlTable, IBqlTable
+		{
+
+		}
+
+		[Serializable]
+		public class DetailsTable : PXBqlTable, IBqlTable
+		{
+
+		}
+
+
+	}
+}
