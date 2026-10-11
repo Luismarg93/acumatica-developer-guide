@@ -1,11 +1,10 @@
 using System;
-using PhoneRepairShop_Code.DAC;
 using PX.Data;
 using PX.Data.BQL.Fluent;
 
 namespace PhoneRepairShop
 {
-	public class RSSVRepairServiceMaint : PXGraph<RSSVRepairServiceMaint>
+	public class RSSVRepairServiceMaint : PXGraph<RSSVRepairServiceMaint, RSSVDevice>
 	{
         public SelectFrom<RSSVRepairService>.View RepairService = null!;
       
@@ -13,14 +12,20 @@ namespace PhoneRepairShop
         public PXCancel<RSSVRepairService> Cancel = null!;
 
         protected void _(Events.FieldUpdated<RSSVRepairService, 
-         RSSVRepairService.walkInService> e)
+           RSSVRepairService.walkInService> e)
         { 
            var row = e.Row;
            row.PreliminaryCheck = !(row.WalkInService == true);
         }
 
+        protected void _(Events.FieldUpdated<RSSVRepairService,
+            RSSVRepairService.preliminaryCheck> e)
+        {
+            var row = e.Row;
+            row.WalkInService = !(row.PreliminaryCheck == true);
+        }
 
-		public PXFilter<MasterTable> MasterView;
+        public PXFilter<MasterTable> MasterView;
 		public PXFilter<DetailsTable> DetailsView;
 
 		[Serializable]
@@ -34,7 +39,5 @@ namespace PhoneRepairShop
 		{
 
 		}
-
-
 	}
 }

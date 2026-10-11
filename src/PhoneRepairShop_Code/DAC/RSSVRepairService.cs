@@ -1,10 +1,10 @@
 using System;
 using PX.Data;
 
-namespace PhoneRepairShop_Code.DAC
+namespace PhoneRepairShop
 {
-	[PXCacheName("Repair Service")]
-	public class RSSVRepairService : PXBqlTable, IBqlTable
+    [PXCacheName(Messages.RSSVRepairService)]
+    public class RSSVRepairService : PXBqlTable, IBqlTable
 	{
 		#region ServiceID
 		[PXDBIdentity]
